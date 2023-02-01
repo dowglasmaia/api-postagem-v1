@@ -1,0 +1,361 @@
+openapi: 3.0.3
+info:
+  title: API Postagem
+  description: |
+    API Postagem de Conteudo
+  contact: {}
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080/api/v1/
+tags:
+  - name: Postagem
+paths:
+  /postagens:
+    post:
+      tags:
+        - Postagem
+      summary: ""
+      description: Método para realizar o cadastro da Postagem
+      operationId: create
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestPostagem'
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: A requisição foi malformada, omitindo atributos obrigatórios,
+            seja no payload ou através de atributos na URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Cabeçalho de autenticação ausente/inválido ou token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+        403:
+          description: O token tem escopo incorreto ou uma política de segurança foi
+            violada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        503:
+          description: Servidor temporariamente indisponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+    get:
+      tags:
+        - Postagem
+      summary: ""
+      description: Método para realizar o cadastro da Postagem
+      operationId: getAll
+      responses:
+        200:
+          description: Obtem todas as Postagens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePostagem'
+
+        401:
+          description: Cabeçalho de autenticação ausente/inválido ou token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        503:
+          description: Servidor temporariamente indisponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+  /postagens/{id}/title:
+    patch:
+      tags:
+        - Postagem
+      summary: ""
+      description: Método para Atualizar o Titulo da Postagem
+      operationId: updateTitle
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestTitlePostagem'
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: A requisição foi malformada, omitindo atributos obrigatórios,
+            seja no payload ou através de atributos na URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Cabeçalho de autenticação ausente/inválido ou token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+        403:
+          description: O token tem escopo incorreto ou uma política de segurança foi
+            violada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        503:
+          description: Servidor temporariamente indisponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+  /postagens/{id}/description:
+    patch:
+      tags:
+        - Postagem
+      summary: ""
+      description: Método para Atualizar a Descrição da Postagem
+      operationId: updateDescription
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestDescriptionPostagem'
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: A requisição foi malformada, omitindo atributos obrigatórios,
+            seja no payload ou através de atributos na URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Cabeçalho de autenticação ausente/inválido ou token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+        403:
+          description: O token tem escopo incorreto ou uma política de segurança foi
+            violada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        503:
+          description: Servidor temporariamente indisponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+  /postagens/{id}/like:
+    patch:
+      tags:
+        - Postagem
+      summary: ""
+      description: Método para curtir as postagens
+      operationId: like
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        204:
+          description: No Content
+        401:
+          description: Cabeçalho de autenticação ausente/inválido ou token inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        422:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Ocorreu um erro no gateway da API ou no microsserviço
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        503:
+          description: Servidor temporariamente indisponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+
+components:
+  schemas:
+    RequestPostagem:
+      required:
+        - titulo
+        - descricao
+      type: object
+      properties:
+        titulo:
+          maxLength: 255
+          type: string
+          description: Titulo da Postagem.
+          example: 'Java 17'
+        descricao:
+          maxLength: 255
+          type: string
+          description: Conteudo da Postagem.
+          example: 'Java 17, que chega com milhares de atualizações...'
+
+    ResponsePostagem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id da Descrção
+          example: 'a5ef3310-a0a1-11ed-a8fc-0242ac120002'
+        titulo:
+          type: string
+          description: Titulo da Postagem.
+          example: 'Java 17'
+        descricao:
+          maxLength: 255
+          type: string
+          description: Conteudo da Postagem.
+          example: 'Java 17, que chega com milhares de atualizações...'
+        like:
+          type: integer
+          format: int64
+          description: Conteudo da Postagem.
+          example: 2000
+        autor:
+          type: string
+          description: Autor da Postagem
+          example: 'Dowglas Maia'
+        data-criacao:
+          type: string
+          format: date-time
+          description: Data da Postagem
+          example: '2023-01-20'
+        data-update:
+          type: string
+          format: date-time
+          description: Data de Atualização da Postagem
+          example: '2023-01-20'
+
+    RequestTitlePostagem:
+      required:
+        - titulo
+      type: object
+      properties:
+        titulo:
+          maxLength: 255
+          type: string
+          description: Titulo da Postagem.
+          example: 'Java 19'
+
+    RequestDescriptionPostagem:
+      required:
+        - titulo
+      type: object
+      properties:
+        descricao:
+          maxLength: 255
+          type: string
+          description: Conteudo da Postagem.
+          example: 'Java 19, que chega com milhares de atualizações...'
+
+
+    ResponseError:
+      title: ResponseError
+      type: object
+      properties:
+        correlationId:
+          maxLength: 255
+          type: string
+          description: Código de identificação da request
+        error:
+          $ref: '#/components/schemas/Error'
+
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          maxLength: 255
+          type: string
+          description: Código de erro específico do endpoint
+        type:
+          maxLength: 255
+          type: string
+          description: Título legível por humanos deste erro específico
+        message:
+          maxLength: 2048
+          type: string
+          description: Descrição legível por humanos deste erro específico
