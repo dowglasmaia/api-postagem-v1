@@ -1,2 +1,9 @@
-package com.maia.apipostagem.service;public interface PostagemService {
+package com.maia.apipostagem.service;
+
+import com.maia.provider.model.RequestPostagemVO;
+
+public interface PostagemService {
+
+    void create(RequestPostagemVO postagem);
+
 }
